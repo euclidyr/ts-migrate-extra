@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./yoo/build"
+    "outDir": "buildz"
   },
   "exclude": [
     "tests",

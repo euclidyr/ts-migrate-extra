@@ -1,6 +1,6 @@
 {
   "name": "ts-migrate-extra",
-  "version": "0.1.38",
+  "version": "0.1.39",
   "description": "A tool for migrating frontend application from JavaScript to TypeScript",
   "directories": {
     "test": "tests"
@@ -16,6 +16,7 @@
     "codemod"
   ],
   "files": [
+    "buildz",
     "build",
     "bin",
     "package.json",
