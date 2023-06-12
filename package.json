@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/euclidyr/ts-migrate-extra.git",
+    "url": "https://github.com/airbnb/ts-migrate.git",
+    "directory": "packages/ts-migrate-server"
   },
   "bugs": {
-    "url": "https://github.com/euclidyr/ts-migrate-extra/issues"
+    "url": "https://github.com/airbnb/ts-migrate/issues"
   },
   "private": true,
-  "description": "ts-migrate-extra monorepo",
+  "description": "ts-migrate monorepo",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
@@ -43,6 +44,8 @@
     "react": "^16.12.0",
     "rimraf": "^3.0.0",
     "ts-jest": "^26.3.0",
+    "ts-migrate-plugins": "^0.1.35",
+    "ts-migrate-server": "^0.1.33",
     "typescript": "4.7.2"
   },
   "workspaces": [
