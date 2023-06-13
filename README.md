@@ -58,7 +58,8 @@ After finishing migration (for building and running the project):
     "start": "node dist/server/server/index.js",
     "build": "rimraf ./dist && tsc -p tsconfig.json",
    ```
-    <br>to package.json
+    
+   to package.json
 
 # ts-migrate
 
