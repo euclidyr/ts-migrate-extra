@@ -11,14 +11,16 @@ async function scanFilesAndReplaceImportExportWords(
     /const ([\w#\{\}\s\,]+) = require\(((\"|\')[^;]+(\"|\'))\)\.([\w#]+);/g,
     /require\(((\"|\')([^;\'\"]+)(\"|\'))\)\.([\w#]+)\(\)/g,
     /module.exports =([^{}]+);/s,
-    /module.exports =([\s\t\r\n]*)\{(.+)\}/s
+    /module.exports =([\s\t\r\n]*)\{(.+)\}/s,
+    /module.exports =([\s\t\r\n]*)class([\s\t\r\n]+)([\w#]+)([\s\t\r\n]*)\{(.+)\}/s
   ];
   const replacementImportExportArr: string[] = [
     "import $1 from $2;",
     "import { $3 } from $2;",
     "import $3 from $1;\n$3.$5()",
     "export default $1;",
-    "export { $2 }"
+    "export { $2 }",
+    "export default class $3 { $5 }"
   ];
 
   const files: string[] = await fs.promises.readdir(directoryPath);
