@@ -21,40 +21,42 @@ ts-migrate-extra is an extension to ts-migrate package with addition feature
 
 After finishing migration (for building and running the project):
 
-1.  change tsconfig.json to this:
+1.  change tsconfig.json to this:<br>
     {
     "compilerOptions": {
     /_ Visit https://aka.ms/tsconfig to read more about this file _/
 
-        /* Language and Environment */
-        "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+            /* Language and Environment */
+            "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
 
-        /* Modules */
-        "module": "commonjs",                                /* Specify what module code is generated. */
-        "rootDir": "./",                                  /* Specify the root folder within your source files. */
-        "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
+            /* Modules */
+            "module": "commonjs",                                /* Specify what module code is generated. */
+            "rootDir": "./",                                  /* Specify the root folder within your source files. */
+            "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
 
-        /* Emit */
-        "outDir": "./dist/server",                                   /* Specify an output folder for all emitted files. */
+            /* Emit */
+            "outDir": "./dist/server",                                   /* Specify an output folder for all emitted files. */
 
-        /* Interop Constraints */
-        // "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
-        // "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
-        "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-        // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
-        "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+            /* Interop Constraints */
+            // "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
+            // "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
+            "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+            // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
+            "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
 
-        /* Type Checking */
-        "strict": true,                                      /* Enable all strict type-checking options. */
-        "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+            /* Type Checking */
+            "strict": true,                                      /* Enable all strict type-checking options. */
+            "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
 
-    }
-    }
+        }
+        }
 
-2.  add
-    "start": "node dist/server/server/index.js",
-    "build": "rimraf ./dist && tsc -p tsconfig.json",
-    to package.json
+    <br>
+
+2.  add<br>
+    "start": "node dist/server/server/index.js",<br>
+    "build": "rimraf ./dist && tsc -p tsconfig.json",<br>
+    to package.json<br>
 
 # ts-migrate
 
