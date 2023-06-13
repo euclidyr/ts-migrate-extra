@@ -279,8 +279,12 @@ async function fixImportExportStaticFunctionsComments(
   directoryPath: string
 ): Promise<void> {
   await scanFilesAndReplaceImportExportWords(directoryPath);
+  console.log('=========================================');
   await scanFilesAndReplaceImportWords(directoryPath);
+  console.log('=========================================');
   await scanFilesAndModifyStaticFunctions(directoryPath);
+  console.log('=========================================');
   await deleteComments(directoryPath);
+  console.log('=========================================');
 }
 export { fixImportExportStaticFunctionsComments };
