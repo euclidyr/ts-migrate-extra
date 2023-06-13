@@ -82,6 +82,7 @@ async function scanFilesAndReplaceImportWords(
     if (filePath.includes('node_modules') || filePath.includes('tests')) {
       continue; // Skip processing folder 'node_modules', 'tests'
     }
+    console.log('thisis filePath:', filePath);
     if (filePath.includes('migrations')) {
       console.log('this is migrations folderr');
     }
