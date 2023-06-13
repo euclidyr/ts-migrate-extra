@@ -23,7 +23,7 @@ After finishing migration (for building and running the project):
 
 1.  change tsconfig.json to this:<br>
    ```
-    {<br>
+    {
     "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
@@ -52,12 +52,13 @@ After finishing migration (for building and running the project):
         }
         }
 
-    <br>
 ```
-2.  add<br>
-    "start": "node dist/server/server/index.js",<br>
-    "build": "rimraf ./dist && tsc -p tsconfig.json",<br>
-    to package.json<br>
+2.  add
+   ```
+    "start": "node dist/server/server/index.js",
+    "build": "rimraf ./dist && tsc -p tsconfig.json",
+   ```
+    to package.json
 
 # ts-migrate
 
