@@ -62,6 +62,59 @@ async function scanFilesAndReplaceImportExportWords(
   }
 }
 
+async function scanFilesAndReplaceImportWords(
+  directoryPath: string
+): Promise<void> {
+  const importToSearchArr: RegExp[] = [
+    /const ([\w#\{\}\s\,]+) = require\(((\"|\')[^;]+(\"|\'))\);/g,
+    /const ([\w#\{\}\s\,]+) = require\(((\"|\')[^;]+(\"|\'))\)\.([\w#]+);/g,
+    /require\(((\"|\')([^;\'\"]+)(\"|\'))\)\.([\w#]+)\(\)/g
+  ];
+  const replacementImportArr: string[] = [
+    "import $1 from $2;",
+    "import { $3 } from $2;",
+    "import $3 from $1;\n$3.$5()"
+  ];
+
+  const files: string[] = await fs.promises.readdir(directoryPath);
+  for (const file of files) {
+    const filePath: string = path.join(directoryPath, file);
+    if (filePath.includes('node_modules') || filePath.includes('tests')) {
+      continue; // Skip processing folder 'node_modules', 'tests'
+    }
+    const stats: fs.Stats = await fs.promises.stat(filePath);
+
+    if (stats.isDirectory()) {
+      await scanFilesAndReplaceImportExportWords(filePath); // Recursively scan subdirectory
+    } else if (stats.isFile()) {
+      if (
+        !/(.*)\.js$/.test(filePath) ||
+        /(.*)\.test\.js$/.test(filePath) ||
+        /(.*)\.config\.js$/.test(filePath)
+      ) {
+        continue;
+      }
+      const content: string = await fs.promises.readFile(filePath, 'utf8');
+
+      let replacedContent: string = content;
+      for (let i = 0; i < importToSearchArr.length; i++) {
+        replacedContent = replacedContent.replace(
+          importToSearchArr[i],
+          replacementImportArr[i]
+        );
+      }
+
+      if (replacedContent !== content) {
+        await fs.promises.writeFile(filePath, replacedContent, 'utf8');
+        console.log(
+          `Replaced words(importing) in file: ${filePath}`
+        );
+        execSync(`npx prettier ${filePath} --write`);
+      }
+    }
+  }
+}
+
 async function scanFilesAndModifyStaticFunctions(
   directoryPath: string
 ): Promise<void> {
@@ -226,6 +279,7 @@ async function fixImportExportStaticFunctionsComments(
   directoryPath: string
 ): Promise<void> {
   await scanFilesAndReplaceImportExportWords(directoryPath);
+  await scanFilesAndReplaceImportWords(directoryPath);
   await scanFilesAndModifyStaticFunctions(directoryPath);
   await deleteComments(directoryPath);
 }
