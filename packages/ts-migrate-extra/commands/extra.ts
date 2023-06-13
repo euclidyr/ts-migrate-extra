@@ -82,14 +82,10 @@ async function scanFilesAndReplaceImportWords(
     if (filePath.includes('node_modules') || filePath.includes('tests')) {
       continue; // Skip processing folder 'node_modules', 'tests'
     }
-    console.log('thisis filePath:', filePath);
-    if (filePath.includes('migrations')) {
-      console.log('this is migrations folderr');
-    }
     const stats: fs.Stats = await fs.promises.stat(filePath);
 
     if (stats.isDirectory()) {
-      await scanFilesAndReplaceImportExportWords(filePath); // Recursively scan subdirectory
+      await scanFilesAndReplaceImportWords(filePath); // Recursively scan subdirectory
     } else if (stats.isFile()) {
       if (
         !/(.*)\.js$/.test(filePath) ||
@@ -99,18 +95,12 @@ async function scanFilesAndReplaceImportWords(
         continue;
       }
       const content: string = await fs.promises.readFile(filePath, 'utf8');
-      if (filePath.includes('migrations')) {
-        console.log('this is migrations folderr:\ncontent');
-      }
       let replacedContent: string = content;
       for (let i = 0; i < importToSearchArr.length; i++) {
         replacedContent = replacedContent.replace(
           importToSearchArr[i],
           replacementImportArr[i]
         );
-      }
-      if (filePath.includes('migrations')) {
-        console.log('this is migrations folderr:\nreplacedContent');
       }
 
       if (replacedContent !== content) {
