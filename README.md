@@ -16,11 +16,11 @@ ts-migrate-extra is an extension to ts-migrate package with addition feature
    ```
 
 3. turn off all prettier/lint check
-   i.e. comment out everything in .\.husky\pre-commit
+   <br>i.e. comment out everything in .\.husky\pre-commit
 
 4. npm install --save-dev ts-migrate-extra
-   npx ts-migrate-extra-full <folder>
-   i.e. npx ts-migrate-extra-full ./abcservice
+   <br>npx ts-migrate-extra-full <folder>
+   <br>i.e. npx ts-migrate-extra-full ./abcservice
 
 After finishing migration (for building and running the project):
 
