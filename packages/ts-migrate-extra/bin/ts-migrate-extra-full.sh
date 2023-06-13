@@ -77,6 +77,9 @@ maybe_commit -m "[ts-migrate-extra][$folder_name] Init tsconfig.json file" -m 'C
 echo "
 [Step $((step_i++)) of ${step_count}] Modifying import, export, static functions......
 "
+
+npx prettier $frontend_folder --write
+
 $cli extra $frontend_folder
 
 maybe_commit -m "[ts-migrate-extra][$folder_name] Modifying import, export, static functions" -m 'Co-authored-by: ts-migrate <>'
