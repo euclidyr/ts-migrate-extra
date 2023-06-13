@@ -3,9 +3,10 @@ ts-migrate-extra is an extension to ts-migrate package with addition feature
 # HOW to use
 
 1. install all packages required for your project @types/libName
-   i.e. npm i --save-dev @types/node @types/sequelize @types/axios @types/body-parser @types/config @types/cors @types/dotenv @types/express @types/lodash @types/qs @types/xml2js
+   <br>i.e. npm i --save-dev @types/node @types/sequelize @types/axios @types/body-parser @types/config @types/cors @types/dotenv @types/express @types/lodash @types/qs @types/xml2js
 
 2. create global.d.ts in your project and add all private packages in it:
+<br>
    i.e.
    declare module '@ncid/core';
    declare module 'aws-cognito-srp-client';
