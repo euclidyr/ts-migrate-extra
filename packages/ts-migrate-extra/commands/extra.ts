@@ -22,8 +22,8 @@ async function scanFilesAndReplaceImportExportWords(
   const files: string[] = await fs.promises.readdir(directoryPath);
   for (const file of files) {
     const filePath: string = path.join(directoryPath, file);
-    if (filePath.includes('node_modules')) {
-      continue; // Skip processing 'node_modules' folder
+    if (filePath.includes('node_modules') || filePath.includes('migrations') || filePath.includes('tests')) {
+      continue; // Skip processing folder 'node_modules', 'migrations', 'tests'
     }
     const stats: fs.Stats = await fs.promises.stat(filePath);
 
@@ -66,8 +66,8 @@ async function scanFilesAndModifyStaticFunctions(
   const files: string[] = await fs.promises.readdir(directoryPath);
   for (const file of files) {
     const filePath: string = path.join(directoryPath, file);
-    if (filePath.includes('node_modules')) {
-      continue; // Skip processing 'node_modules' folder
+    if (filePath.includes('node_modules') || filePath.includes('migrations') || filePath.includes('tests')) {
+      continue; // Skip processing folder 'node_modules', 'migrations', 'tests'
     }
     const stats: fs.Stats = await fs.promises.stat(filePath);
 
@@ -186,8 +186,8 @@ async function deleteComments(directoryPath: string): Promise<void> {
   const files: string[] = await fs.promises.readdir(directoryPath);
   for (const file of files) {
     const filePath: string = path.join(directoryPath, file);
-    if (filePath.includes('node_modules')) {
-      continue; // Skip processing 'node_modules' folder
+    if (filePath.includes('node_modules') || filePath.includes('migrations') || filePath.includes('tests')) {
+      continue; // Skip processing folder 'node_modules', 'migrations', 'tests'
     }
     const stats: fs.Stats = await fs.promises.stat(filePath);
 
