@@ -22,9 +22,9 @@ ts-migrate-extra is an extension to ts-migrate package with addition feature
 After finishing migration (for building and running the project):
 
 1.  change tsconfig.json to this:<br>
-    {
+    {<br>
     "compilerOptions": {
-    /_ Visit https://aka.ms/tsconfig to read more about this file _/
+    /* Visit https://aka.ms/tsconfig to read more about this file */
 
             /* Language and Environment */
             "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
