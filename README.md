@@ -6,12 +6,14 @@ ts-migrate-extra is an extension to ts-migrate package with addition feature
    <br>i.e. npm i --save-dev @types/node @types/sequelize @types/axios @types/body-parser @types/config @types/cors @types/dotenv @types/express @types/lodash @types/qs @types/xml2js
 
 2. create global.d.ts in your project and add all private packages in it:
-<br>
    i.e.
+   
+   ```
    declare module '@ncid/core';
    declare module 'aws-cognito-srp-client';
    declare module 'aws-sdk';
    declare module 'aws-sdk-mock';
+   ```
 
 3. turn off all prettier/lint check
    i.e. comment out everything in .\.husky\pre-commit
