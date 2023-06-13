@@ -7,16 +7,18 @@ async function scanFilesAndReplaceImportExportWords(
   directoryPath: string
 ): Promise<void> {
   const importExportToSearchArr: RegExp[] = [
-    /const ([\w#\{\}\s\,]+) = require\((\"[^;]+\")\);/g,
-    /const ([\w#\{\}\s\,]+) = require\((\"[^;]+\")\)\.([\w#]+);/g,
+    /const ([\w#\{\}\s\,]+) = require\(((\"|\')[^;]+(\"|\'))\);/g,
+    /const ([\w#\{\}\s\,]+) = require\(((\"|\')[^;]+(\"|\'))\)\.([\w#]+);/g,
+    /require\(((\"|\')([^;\'\"]+)(\"|\'))\)\.([\w#]+)\(\)/g,
     /module.exports =([^{}]+);/s,
     /module.exports =([\s\t\r\n]*)\{(.+)\}/s
   ];
   const replacementImportExportArr: string[] = [
-    'import $1 from $2;',
-    'import { $3 } from $2;',
-    'export default $1;',
-    'export { $2 }'
+    "import $1 from $2;",
+    "import { $3 } from $2;",
+    "import $3 from $1;\n$3.$5()",
+    "export default $1;",
+    "export { $2 }"
   ];
 
   const files: string[] = await fs.promises.readdir(directoryPath);
